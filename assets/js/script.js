@@ -9,7 +9,7 @@
 
     $(document).ready(function(){
 
-        var selectionNumber = parseInt(prompt('Con quanti numeri vuoi giocare?'))
+        var selectionNumber = parseInt(prompt('Con quanti numeri vuoi giocare?'));
         reset();
         //array dei numeri random generati dal computer
         var arrRandom = [];
@@ -20,12 +20,17 @@
         //array del risultato dei numeri
         var arrResult = [];
 
+
+        $('#reset').click(function(){
+           location.reload(); 
+        });
         $('#btn-start').click(function(){
             $(this).hide();
+            $('#reset').hide();
             while(arrRandom.length < selectionNumber){
                 arrRandom.push(generatorRandomNumber(1,100));
             }
-            console.log(arrRandom)
+            console.log(arrRandom);
 
             printOutput(arrRandom.toString(),'#display');
 
@@ -62,27 +67,20 @@
                        if( arrNumber.includes(singleNumber)){
                            arrResult.push(singleNumber);
                            printOutput('Hai indovinato questi numeri: ' + arrResult, '#display');
+                           
                        }else{
                            printOutput('HAI PERSO! Non hai indovinato nessun numero','#display');
                        }
                     }
 
                 },3000);
+                $('#reset').show();
+                
+                
             }
+            
 
         });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -104,4 +102,5 @@
         printOutput('Pronto..Clicca VIA', '#display');
         $('#btn-start').show();
         $('#btn-box').hide();
+
     }
